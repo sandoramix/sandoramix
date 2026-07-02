@@ -4,6 +4,14 @@ export type ProjectPreview =
 			type: "browser";
 			/** Address shown in the fake URL bar. */
 			url: string;
+			/** Big center text; defaults to the initials of the project title. */
+			monogram?: string;
+	  }
+	| {
+			/** Live raycasting render on a canvas — Wolfenstein style. */
+			type: "raycaster";
+			/** Title shown in the window bar. */
+			windowTitle: string;
 	  }
 	| {
 			/** Animated terminal window that "types" when scrolled into view. */
@@ -36,7 +44,7 @@ export const projects: Project[] = [
 		tags: ["Next.js", "TypeScript", "Interactive Map", "Game Companion App", "Vercel", "PostgreSQL", "Community Tool"],
 		liveUrl: "https://rf4it.sandoramix.dev",
 		accent: "#2dd4bf",
-		preview: { type: "browser", url: "rf4it.sandoramix.dev" },
+		preview: { type: "browser", url: "rf4it.sandoramix.dev", monogram: "RF4IT" },
 	},
 	{
 		title: "42-findmypeer",
@@ -56,11 +64,7 @@ export const projects: Project[] = [
 		tags: ["C", "Raycasting", "Computer Graphics", "Game Engine", "Low-Level Programming", "Linear Algebra", "42 School"],
 		githubUrl: "https://github.com/Sandoramix/42-cub3D",
 		accent: "#fb923c",
-		preview: {
-			type: "terminal",
-			command: "make && ./cub3D maps/castle.cub",
-			output: ["[mlx]  window 1280x720 created", "[map]  32x24 grid parsed, 4 textures loaded", "[core] raycaster running · 60 fps", "[core] minimap + collisions active"],
-		},
+		preview: { type: "raycaster", windowTitle: "cub3D — maps/castle.cub" },
 	},
 	{
 		title: "minishell",

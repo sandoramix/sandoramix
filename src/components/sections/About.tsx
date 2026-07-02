@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { motion } from "motion/react";
-import { about } from "~/data/about";
+import { about, skills } from "~/data/about";
 import { SectionHeading } from "~/components/sections/SectionHeading";
 
 export const About: FC = () => {
@@ -35,6 +35,28 @@ export const About: FC = () => {
 						</motion.div>
 					))}
 				</div>
+			</div>
+
+			<div className="mx-auto mt-14 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				{skills.map((skillGroup, index) => (
+					<motion.div
+						key={skillGroup.group}
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true, margin: "-60px" }}
+						transition={{ duration: 0.4, delay: index * 0.06 }}
+						className="rounded-xl border border-neutral-800 bg-neutral-900/60 p-4 text-left backdrop-blur-sm"
+					>
+						<h3 className="mb-3 text-xs font-bold tracking-widest text-red-400 uppercase">{skillGroup.group}</h3>
+						<div className="flex flex-wrap gap-1.5">
+							{skillGroup.items.map((item) => (
+								<span key={item} className="rounded-full bg-neutral-800/80 px-2.5 py-0.5 text-xs text-neutral-300">
+									{item}
+								</span>
+							))}
+						</div>
+					</motion.div>
+				))}
 			</div>
 		</section>
 	);

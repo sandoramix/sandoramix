@@ -1,6 +1,7 @@
 import { type FC, useRef } from "react";
 import { motion, useInView, useMotionTemplate, useMotionValue, useSpring } from "motion/react";
 import type { Project } from "~/data/projects";
+import { RaycasterScene } from "~/components/projects/RaycasterScene";
 
 const MAX_TILT = 5;
 
@@ -43,7 +44,9 @@ export const ProjectPreview: FC<{ project: Project }> = ({ project }) => {
 			className="group relative w-full overflow-hidden rounded-xl border border-neutral-800 bg-neutral-950/80 shadow-2xl shadow-black/50 backdrop-blur-sm"
 		>
 			<motion.div className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: spotlight }} />
-			{project.preview.type === "browser" ? <BrowserScene project={project} url={project.preview.url} /> : <TerminalScene project={project} command={project.preview.command} output={project.preview.output} />}
+			{project.preview.type === "browser" && <BrowserScene project={project} url={project.preview.url} monogram={project.preview.monogram} />}
+			{project.preview.type === "terminal" && <TerminalScene project={project} command={project.preview.command} output={project.preview.output} />}
+			{project.preview.type === "raycaster" && <RaycasterWindow title={project.preview.windowTitle} />}
 		</motion.div>
 	);
 };
@@ -56,13 +59,28 @@ const WindowDots: FC = () => (
 	</div>
 );
 
-const BrowserScene: FC<{ project: Project; url: string }> = ({ project, url }) => {
-	const monogram = project.title
-		.split(/[\s-]+/)
-		.map((word) => word[0])
-		.join("")
-		.slice(0, 3)
-		.toUpperCase();
+const RaycasterWindow: FC<{ title: string }> = ({ title }) => (
+	<div className="flex h-64 flex-col sm:h-72">
+		<div className="flex items-center gap-3 border-b border-neutral-800 bg-neutral-900/80 px-4 py-2.5">
+			<WindowDots />
+			<span className="flex-1 truncate text-center text-xs text-neutral-500">{title}</span>
+		</div>
+		<div className="relative flex-1 overflow-hidden">
+			<RaycasterScene />
+			<span className="pointer-events-none absolute bottom-2 left-3 font-mono text-[10px] text-neutral-500">move mouse to steer</span>
+		</div>
+	</div>
+);
+
+const BrowserScene: FC<{ project: Project; url: string; monogram?: string }> = ({ project, url, monogram: monogramOverride }) => {
+	const monogram =
+		monogramOverride ??
+		project.title
+			.split(/[\s-]+/)
+			.map((word) => word[0])
+			.join("")
+			.slice(0, 3)
+			.toUpperCase();
 
 	return (
 		<div className="flex h-64 flex-col sm:h-72">
