@@ -49,11 +49,25 @@ export const ProjectPreview: FC<{ project: Project }> = ({ project }) => {
 	);
 };
 
-const WindowDots: FC = () => (
-	<div className="flex gap-1.5">
-		<span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
-		<span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
-		<span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
+/** Windows-style caption buttons: minimize, maximize, close. */
+const WindowControls: FC = () => (
+	<div className="flex items-center text-neutral-400">
+		<span className="flex h-6 w-8 items-center justify-center rounded-sm transition-colors group-hover:text-neutral-300 hover:bg-neutral-700/60">
+			<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1">
+				<line x1="0" y1="5" x2="10" y2="5" />
+			</svg>
+		</span>
+		<span className="flex h-6 w-8 items-center justify-center rounded-sm transition-colors group-hover:text-neutral-300 hover:bg-neutral-700/60">
+			<svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1">
+				<rect x="0.5" y="0.5" width="9" height="9" />
+			</svg>
+		</span>
+		<span className="flex h-6 w-8 items-center justify-center rounded-sm transition-colors group-hover:text-neutral-300 hover:bg-red-600 hover:text-white">
+			<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1">
+				<line x1="0" y1="0" x2="10" y2="10" />
+				<line x1="10" y1="0" x2="0" y2="10" />
+			</svg>
+		</span>
 	</div>
 );
 
@@ -69,9 +83,9 @@ const BrowserScene: FC<{ project: Project; url: string; monogram?: string }> = (
 
 	return (
 		<div className="flex h-64 flex-col sm:h-72">
-			<div className="flex items-center gap-3 border-b border-neutral-800 bg-neutral-900/80 px-4 py-2.5">
-				<WindowDots />
+			<div className="flex items-center gap-3 border-b border-neutral-800 bg-neutral-900/80 py-1.5 pr-2 pl-4">
 				<div className="flex-1 truncate rounded-md bg-neutral-800/80 px-3 py-1 text-center text-xs text-neutral-400">{url}</div>
+				<WindowControls />
 			</div>
 
 			<div className="relative flex-1 overflow-hidden">
@@ -120,9 +134,9 @@ const TerminalScene: FC<{ project: Project; command: string; output: string[] }>
 
 	return (
 		<div ref={ref} className="flex h-64 flex-col font-mono text-[13px] leading-relaxed sm:h-72">
-			<div className="flex items-center gap-3 border-b border-neutral-800 bg-neutral-900/80 px-4 py-2.5">
-				<WindowDots />
-				<span className="flex-1 truncate text-center text-xs text-neutral-500">sandoramix@dev — {project.title.toLowerCase()}</span>
+			<div className="flex items-center gap-3 border-b border-neutral-800 bg-neutral-900/80 py-1.5 pr-2 pl-4">
+				<span className="flex-1 truncate text-left text-xs text-neutral-500">sandoramix@dev — {project.title.toLowerCase()}</span>
+				<WindowControls />
 			</div>
 
 			<div className="flex-1 space-y-1.5 overflow-hidden p-4 text-left">
