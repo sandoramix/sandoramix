@@ -3,7 +3,7 @@ export const about = {
 	// Each string renders as its own paragraph.
 	paragraphs: [
 		"I'm Oleksandr — full-stack web & mobile developer and 42 Firenze student, based in Florence, Italy. Curious by default: whenever I learn something new, it usually ends up implemented in one of my repos.",
-		"I joined 42 in 2023 and started working part-time as a developer that same year — so I split my time between peer-reviewed C projects with zero tolerance for memory leaks and real-world web & mobile codebases with real deadlines.",
+		"Since 2023 I've been living a double life: part-time Software Developer at Magenta srl by day, 42 Firenze student the rest of the time — real-world web & mobile codebases on one side, peer-reviewed C projects with zero tolerance for memory leaks on the other.",
 		"Off the keyboard I mess with cybersecurity challenges and CTFs, and do very-newbie-level repair of consoles, laptops and motherboards. Things get opened. Most of them survive.",
 	],
 	stats: [
@@ -27,36 +27,58 @@ export const skills: SkillGroup[] = [
 	{ group: "DevOps & Security", items: ["Docker", "Jenkins", "Git", "Linux", "CTF & Challenges"] },
 ];
 
+export type TimelineEntryKind = "work" | "education" | "milestone";
+
 export type TimelineEntry = {
 	year: string;
 	title: string;
+	/** Shown as a small badge next to the year. */
+	kind: TimelineEntryKind;
+	/** Company / school / context line. */
+	place?: string;
 	description: string;
 };
 
 export const timeline: TimelineEntry[] = [
 	{
+		year: "2017 – 2023",
+		title: "IT & Telecommunications",
+		kind: "education",
+		place: "I.I.S. Leonardo Da Vinci · Florence",
+		description: "High school specialized in IT and telecommunications — first structured programming with PHP and Java.",
+	},
+	{
 		year: "2020",
-		title: "First lines of code",
-		description: "Self-taught beginnings — small scripts, web pages, and a fresh GitHub account. Breaking things to see how they work.",
+		title: "First personal projects",
+		kind: "milestone",
+		place: "GitHub",
+		description: "Self-taught side projects beyond school — small scripts, web pages, breaking things to see how they work.",
 	},
 	{
-		year: "2023",
+		year: "Mar 2023",
+		title: "Software Developer",
+		kind: "work",
+		place: "Magenta srl · Florence (part-time, hybrid)",
+		description: "Full-stack web & mobile development alongside my studies — React Native, Java and everything in between. Still going.",
+	},
+	{
+		year: "Oct 2023",
 		title: "Joined 42 Firenze",
+		kind: "education",
+		place: "42 Firenze",
 		description: "Survived the Piscine, entered the core curriculum. C, algorithms and merciless peer evaluations became daily life.",
-	},
-	{
-		year: "2023",
-		title: "First dev job",
-		description: "Started working part-time as a developer while studying — real codebases, real deadlines, web and mobile.",
 	},
 	{
 		year: "2024",
 		title: "Systems deep-dive",
+		kind: "milestone",
+		place: "42 core curriculum",
 		description: "Built minishell, cub3D and the rest of the core — shells, raycasters, threads, containers. All in C/C++, all leak-free.",
 	},
 	{
 		year: "Now",
 		title: "Building & exploring",
+		kind: "milestone",
 		description: "Full-stack web & mobile by day; CTFs, side tools and hardware repair experiments whenever an itch needs scratching.",
 	},
 ];
