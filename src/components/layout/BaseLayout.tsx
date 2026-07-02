@@ -1,4 +1,4 @@
-import { frame, motion, useSpring } from "motion/react";
+import { frame, motion, useScroll, useSpring, useTransform } from "motion/react";
 import {
 	type FC,
 	type PropsWithChildren,
@@ -8,24 +8,45 @@ import {
 } from "react";
 import { FaCode } from "react-icons/fa";
 import type {SpringOptions} from "motion";
+import { ParticleField } from "~/components/motion/ParticleField";
+import { ScrollContainerContext } from "~/components/layout/ScrollContext";
+
+/**
+ * Background gradient keyframes — interpolated as the page scrolls.
+ * Keep every entry in the exact same format so motion can interpolate them.
+ */
+const BACKGROUND_STOPS = [
+	"linear-gradient(to bottom, #0a0a0a 55%, #991b1b 130%)",
+	"linear-gradient(to bottom, #0c0a0a 45%, #9f1239 120%)",
+	"linear-gradient(to bottom, #0a0a0c 40%, #9a3412 115%)",
+];
 
 export const BaseLayout: FC<PropsWithChildren> = ({ children }) => {
-	const ref = useRef<HTMLDivElement>(null);
-	const { x, y } = useFollowPointer(ref);
+	const cursorRef = useRef<HTMLDivElement>(null);
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const { x, y } = useFollowPointer(cursorRef);
+
+	const { scrollYProgress } = useScroll({ container: scrollRef });
+	const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20 });
+	const background = useTransform(smoothProgress, [0, 0.5, 1], BACKGROUND_STOPS);
 
 	return (
-		<main className="flex h-dvh w-dvw flex-col overflow-hidden bg-gradient-to-b from-neutral-950 from-55% to-red-800 text-neutral-200 select-none">
-			<div className="z-20 flex w-full grow flex-col overflow-y-auto">
-				{children}
-			</div>
+		<motion.main style={{ background }} className="flex h-dvh w-dvw flex-col overflow-hidden text-neutral-200 select-none">
+			<ParticleField className="pointer-events-none fixed inset-0 z-0" />
+			<div className="noise-overlay pointer-events-none fixed inset-0 z-30" />
+			<ScrollContainerContext.Provider value={scrollRef}>
+				<div ref={scrollRef} className="z-20 flex w-full grow flex-col overflow-y-auto">
+					{children}
+				</div>
+			</ScrollContainerContext.Provider>
 			<motion.div
 				className={`pointer-events-none fixed top-0 left-0 z-10 h-10 w-10 text-3xl`}
-				ref={ref}
+				ref={cursorRef}
 				style={{ x, y }}
 			>
 				<FaCode className={"text-red-800/50"} />
 			</motion.div>
-		</main>
+		</motion.main>
 	);
 };
 
