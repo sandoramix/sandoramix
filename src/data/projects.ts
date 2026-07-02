@@ -8,12 +8,6 @@ export type ProjectPreview =
 			monogram?: string;
 	  }
 	| {
-			/** Live raycasting render on a canvas — Wolfenstein style. */
-			type: "raycaster";
-			/** Title shown in the window bar. */
-			windowTitle: string;
-	  }
-	| {
 			/** Animated terminal window that "types" when scrolled into view. */
 			type: "terminal";
 			/** Command shown after the prompt. */
@@ -64,7 +58,11 @@ export const projects: Project[] = [
 		tags: ["C", "Raycasting", "Computer Graphics", "Game Engine", "Low-Level Programming", "Linear Algebra", "42 School"],
 		githubUrl: "https://github.com/Sandoramix/42-cub3D",
 		accent: "#fb923c",
-		preview: { type: "raycaster", windowTitle: "cub3D — maps/castle.cub" },
+		preview: {
+			type: "terminal",
+			command: "make && ./cub3D maps/castle.cub",
+			output: ["[mlx]  window 1280x720 created", "[map]  32x24 grid parsed, 4 textures loaded", "[core] raycaster running · 60 fps", "[core] minimap + collisions active"],
+		},
 	},
 	{
 		title: "minishell",

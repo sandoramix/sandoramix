@@ -1,7 +1,6 @@
 import { type FC, useRef } from "react";
 import { motion, useInView, useMotionTemplate, useMotionValue, useSpring } from "motion/react";
 import type { Project } from "~/data/projects";
-import { RaycasterScene } from "~/components/projects/RaycasterScene";
 
 const MAX_TILT = 5;
 
@@ -46,7 +45,6 @@ export const ProjectPreview: FC<{ project: Project }> = ({ project }) => {
 			<motion.div className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: spotlight }} />
 			{project.preview.type === "browser" && <BrowserScene project={project} url={project.preview.url} monogram={project.preview.monogram} />}
 			{project.preview.type === "terminal" && <TerminalScene project={project} command={project.preview.command} output={project.preview.output} />}
-			{project.preview.type === "raycaster" && <RaycasterWindow title={project.preview.windowTitle} />}
 		</motion.div>
 	);
 };
@@ -56,19 +54,6 @@ const WindowDots: FC = () => (
 		<span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />
 		<span className="h-2.5 w-2.5 rounded-full bg-yellow-500/80" />
 		<span className="h-2.5 w-2.5 rounded-full bg-green-500/80" />
-	</div>
-);
-
-const RaycasterWindow: FC<{ title: string }> = ({ title }) => (
-	<div className="flex h-64 flex-col sm:h-72">
-		<div className="flex items-center gap-3 border-b border-neutral-800 bg-neutral-900/80 px-4 py-2.5">
-			<WindowDots />
-			<span className="flex-1 truncate text-center text-xs text-neutral-500">{title}</span>
-		</div>
-		<div className="relative flex-1 overflow-hidden">
-			<RaycasterScene />
-			<span className="pointer-events-none absolute bottom-2 left-3 font-mono text-[10px] text-neutral-500">move mouse to steer</span>
-		</div>
 	</div>
 );
 
