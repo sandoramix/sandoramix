@@ -34,6 +34,23 @@ export const About: FC = () => {
 							<div className="text-xs tracking-wide text-neutral-400 uppercase">{stat.label}</div>
 						</motion.div>
 					))}
+
+					<motion.div
+						initial={{ opacity: 0, x: 24 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						viewport={{ once: true, margin: "-80px" }}
+						transition={{ duration: 0.45, delay: about.stats.length * 0.1 }}
+						className="rounded-xl border border-neutral-800 bg-neutral-900/60 p-4 text-left backdrop-blur-sm"
+					>
+						<div className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-neutral-200">
+							{about.languages.items.map((language) => (
+								<span key={language.name}>
+									{language.flag} {language.name}
+								</span>
+							))}
+						</div>
+						<div className="mt-1.5 text-xs text-neutral-500 italic">{about.languages.note}</div>
+					</motion.div>
 				</div>
 			</div>
 

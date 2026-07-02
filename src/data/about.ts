@@ -2,7 +2,7 @@ export const about = {
 	heading: "About Me",
 	// Each string renders as its own paragraph.
 	paragraphs: [
-		"I'm Oleksandr — full-stack web & mobile developer and 42 Firenze student, based in Florence, Italy. Curious by default: whenever I learn something new, it usually ends up implemented in one of my repos.",
+		"I'm Oleksandr — Ukrainian, living in Florence, Italy. Full-stack web & mobile developer and 42 Firenze student. Curious by default: whenever I learn something new, it usually ends up implemented in one of my repos.",
 		"Since 2023 I've been living a double life: part-time Software Developer at Magenta srl by day, 42 Firenze student the rest of the time — real-world web & mobile codebases on one side, peer-reviewed C projects with zero tolerance for memory leaks on the other.",
 		"Off the keyboard I mess with cybersecurity challenges and CTFs, and do very-newbie-level repair of consoles, laptops and motherboards. Things get opened. Most of them survive.",
 	],
@@ -11,6 +11,14 @@ export const about = {
 		{ value: "2023", label: "working as a dev since" },
 		{ value: "25+", label: "public repos" },
 	],
+	languages: {
+		items: [
+			{ flag: "🇮🇹", name: "Italian" },
+			{ flag: "🇬🇧", name: "English" },
+			{ flag: "🇺🇦", name: "Ukrainian" },
+		],
+		note: "none perfect — all understood",
+	},
 };
 
 export type SkillGroup = {
