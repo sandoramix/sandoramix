@@ -19,12 +19,12 @@ export type SkillGroup = {
 };
 
 export const skills: SkillGroup[] = [
-	{ group: "Languages", items: ["TypeScript", "JavaScript", "Python", "Java", "C", "C++"] },
-	{ group: "Frontend", items: ["React", "Next.js", "Angular", "Vue", "Svelte", "TailwindCSS"] },
+	{ group: "Languages", items: ["TypeScript", "JavaScript", "Python", "Java", "C", "C++", "PHP", "Bash"] },
+	{ group: "Frontend", items: ["React", "Next.js", "Angular", "Vue", "Svelte", "TailwindCSS", "HTML & CSS"] },
 	{ group: "Backend", items: ["Spring Boot", "NestJS", "Express", "Fastify", "Flask", "Node.js"] },
 	{ group: "Mobile", items: ["React Native", "Android"] },
-	{ group: "Databases", items: ["PostgreSQL", "MySQL", "MariaDB", "SQLite"] },
-	{ group: "DevOps & Security", items: ["Docker", "Jenkins", "Git", "Linux", "CTF & Challenges"] },
+	{ group: "Databases", items: ["PostgreSQL", "MySQL", "MariaDB", "SQLite", "SQL"] },
+	{ group: "Systems, DevOps & Security", items: ["Linux", "Unix", "Docker", "Jenkins", "Git", "SSH", "Networking", "Virtualization", "CTF & Challenges"] },
 ];
 
 export type TimelineEntryKind = "work" | "education" | "milestone";
