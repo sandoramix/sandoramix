@@ -88,7 +88,7 @@ export const timeline: TimelineEntry[] = [
 		title: "42 Masteries",
 		kind: "education",
 		place: "42 Firenze · 42advanced",
-		description: "Core curriculum done — now on the advanced track: same 42 formula, harder projects.",
+		description: "Core curriculum done — now on the advanced track: libasm (x86-64 assembly), darkly (web security & exploitation), with more to come.",
 	},
 	{
 		year: "Now",
