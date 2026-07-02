@@ -23,7 +23,7 @@ export const Hero: FC = () => {
 	return (
 		<div className="relative flex min-h-[85dvh] w-full shrink-0 flex-col items-center justify-center gap-3 py-16 text-center capitalize">
 			<div className="hero-glow pointer-events-none absolute top-1/2 left-1/2 -z-10 h-72 w-[36rem] max-w-full -translate-x-1/2 -translate-y-1/2" />
-			<ScatterText className={`text-shadow-lg text-shadow-black text-2xl text-neutral-800 uppercase ${exo2Font.className}`} text={"Oleksandr Dudniak"} automaticRestore={true} automaticRestoreDelay={4.5} />
+			<ScatterText className={`text-shadow-lg text-shadow-black text-2xl text-neutral-600 uppercase ${exo2Font.className}`} text={"Oleksandr Dudniak"} automaticRestore={true} automaticRestoreDelay={4.5} />
 			<motion.div
 				initial={{ opacity: 0.25, scale: 0.25 }}
 				animate={{ opacity: 1, scale: 1 }}
