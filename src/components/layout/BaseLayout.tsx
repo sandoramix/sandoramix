@@ -35,7 +35,7 @@ export const BaseLayout: FC<PropsWithChildren> = ({ children }) => {
 			<ParticleField className="pointer-events-none fixed inset-0 z-0" />
 			<div className="noise-overlay pointer-events-none fixed inset-0 z-30" />
 			<ScrollContainerContext.Provider value={scrollRef}>
-				<div ref={scrollRef} className="z-20 flex w-full grow flex-col overflow-y-auto">
+				<div ref={scrollRef} className="z-20 flex w-full grow flex-col overflow-y-auto overflow-x-hidden">
 					{children}
 				</div>
 			</ScrollContainerContext.Provider>
