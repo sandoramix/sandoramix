@@ -28,7 +28,7 @@ console.info(`Hello World!`);
 - 🏫 Studying at [42Firenze](https://42firenze.it) — peer-to-peer, no teachers, just code and grit
 - 🌐 Personal website → **[sandoramix.dev](https://sandoramix.dev)**
 - 🔐 Cybersecurity enthusiast — CTF & challenges
-- 🔧 Repair technician hobbyist *(laptops, motherboards, mobile)*
+- 🔧 Repair technician hobbyist *(laptops, consoles, motherboards, mobile)*
 - 📍 Florence, Italy
 
 ---
